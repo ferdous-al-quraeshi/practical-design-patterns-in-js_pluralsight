@@ -28,7 +28,7 @@ urgentTask.notify = function () {
 };
 
 urgentTask.complete();
-// urgentTask.notify(); /* get rid of this and call this with the save() method altogether */
+// urgentTask.notify(); /* get rid of this and "call()" this with the save() method altogether */
 urgentTask.save = function () {
     this.notify();
     Task.prototype.save.call(this);
