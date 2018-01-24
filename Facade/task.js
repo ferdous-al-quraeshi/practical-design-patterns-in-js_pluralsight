@@ -27,6 +27,21 @@ var TaskService = function () {
 
 
 /* creating a "wrapper" on top of the "TaskService" */
+var TaskServiceWrapper = function () {
+    var completeAndNotify = function (task) {
+        /* calling the methods individually (one-by-one) as typical in API calls */
+        /* Facade pattern will be in action in the next commit to simplify things thus hiding complexities */
+        TaskService.complete(myTask);
+        if (myTask.completed == true) {
+            TaskService.setCompleteDate(myTask);
+            TaskService.notifyCompletion(myTask);
+            TaskService.save(myTask);
+        }   
+    };
+    return {
+        completeAndNotify: completeAndNotify
+    };
+}();    /* calling the "TaskServiceWrapper" => recall the Module Pattern */
 
 /* newing up a task: "MyTask" */
 var myTask = new Task({
@@ -38,11 +53,5 @@ var myTask = new Task({
 });
 // console.log(myTask);
 
-/* calling the methods individually (one-by-one) as typical in API calls */
-/* Facade pattern will be in action in the next commit to simplify things thus hiding complexities */
-TaskService.complete(myTask);
-if(myTask.completed == true) {
-    TaskService.setCompleteDate(myTask);
-    TaskService.notifyCompletion(myTask);
-    TaskService.save(myTask);
-}
+/* just one line of executive code that simplified the complex API calls */
+TaskServiceWrapper.completeAndNotify(myTask);
