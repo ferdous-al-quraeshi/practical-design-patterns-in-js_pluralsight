@@ -31,7 +31,9 @@ var ObserverList = function () {
 /* Now we've to add all the (helper) methods to the list
      - add()
      - get()
-     - count() // added later to serve "ObservableTask.prototype.notify()": see => line:68
+     - count()      // added later to serve "ObservableTask.prototype.notify()"; see => line:92 
+     - removeAt()   // added later to implement "removeObserver" functionality; see => line:56
+     - indexOf()    // added later to implement "removeObserver" functionality; see => line:59
 */
 ObserverList.prototype.add = function (obj) {
     return this.observers.push(obj);
@@ -45,6 +47,27 @@ ObserverList.prototype.count = function () {
     return this.observers.length;
 };
 
+/*  Adding 'removeObserver' functionality to the observers
+    - allows an 'observer' to no longer being notified when changes that are being made
+    - two things:
+        1. the ability to remove 'at a spot' (aka index)
+        2. where that index is: we've to be able to find our 'observer' into our ObserverList
+*/
+ObserverList.prototype.removeAt = function (index) {
+    this.observers.splice(index, 1);
+};
+ObserverList.prototype.indexOf = function (obj, startIndex) {
+    var i = startIndex;
+    while (i < this.observers.length) {
+        if(this.observers === obj) {
+            return i;
+        }
+        i++;
+    }
+    return -1;
+}
+
+
 /* We're gonna make our "original" "Task" object into an "ObservableTask" as a wrapper around it
     - because, we don't wanna mess with it ;)
 */
@@ -57,6 +80,7 @@ var ObservableTask = function (data) {
      - addObserver() [ allow the observers to add themselves to the "ObservableTask" ]
      - notify() [ after getting each observer and then calling each with its context ]
      - save()   [ whenever a 'task' is saved, this "overriding method" will be called to 'notify' each 'observer' ]
+     - removeObserver() [ allow the observers to remove themselves from the "ObservableTask" ]
 */
 ObservableTask.prototype.addObserver = function (observer) {
     this.observers.add(observer);
@@ -77,6 +101,9 @@ ObservableTask.prototype.save = function () {
     */
     this.notify(this);
 }
+ObservableTask.prototype.removeObserver = function (observer) {
+    this.observers.removeAt(this.observers.indexOf(observer, 0));
+}
 
 var task1 = new ObservableTask({    /* 'new Task()' is replaced with 'new ObservableTask()' */
     name: 'create a demo for Observers',
@@ -96,3 +123,6 @@ task1.addObserver(notifying.update);
 task1.addObserver(auditing.update);
 
 task1.save();
+
+task1.removeObserver(auditing);     /* this removes the 'auditing' service from our 'ObserverList' and updated with the remaining service(s) */
+task1.save();   /* this triggers with the available service calls */
