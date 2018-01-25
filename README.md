@@ -21,7 +21,7 @@ This repo is meant to keep track of my learning stages of the mentioned tutorial
 
 ## Structural Patterns:
     Concerned with "how" objects are made up and simplify the "relationships" among objects.
-    The 2-way dealings: 1. Extend functionality 2. Simplify functionality
+    The two-way dealings: 1. Extend functionality 2. Simplify functionality
 - Decorator	[ extend ]
     * Used to "add new functionality" to an existing object, without being obtrusive (ie. being optional)
     * More complete inheritance
@@ -42,3 +42,8 @@ This repo is meant to keep track of my learning stages of the mentioned tutorial
 	   - Facade:       covering up and creating a better interface for exactly the same (existing) functionality
 
 - Flyweight	[ simplify ]
+    * Used to conserve memory by taking portions of an object and sharing that across objects.
+    * kind of like when we do the "Object.prototype" to share blueprints of an object rather share replicating that each time.
+    * Overall "result" is a smaller memory footprint (heap)... NOT a browser issue really but very effective in mobile devices.
+    * Like a "flyweight boxer"- the least weighed boxer (weighing above 49 kg (108 lb) and up to 52 kg (114 lb))... the smallest possible thing that one can get
+    * __CAVEAT__: Useful only if you have (really) large number of objects- say, 100-500 objects...
