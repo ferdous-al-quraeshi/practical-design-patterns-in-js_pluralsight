@@ -1,4 +1,4 @@
-# practical-design-patterns-in-js_pluralsight
+# Practical Design Patterns in JavaScript: A Pluralsight Course
 This repo comprises all my practice files unto the course titled "Practical Design Patterns in JavaScript" by Jonathan Mills on  Pluralsight.
 This repo is meant to keep track of my learning stages of the mentioned tutorial.
 
@@ -47,3 +47,17 @@ This repo is meant to keep track of my learning stages of the mentioned tutorial
     * Overall "result" is a smaller memory footprint (heap)... NOT a browser issue really but very effective in mobile devices.
     * Like a "flyweight boxer"- the least weighed boxer (weighing above 49 kg (108 lb) and up to 52 kg (114 lb))... the smallest possible thing that one can get
     * __CAVEAT__: Useful only if you have (really) large number of objects- say, 100-500 objects...
+
+
+## Behavioral Patterns:
+    Concerned with the assignment of responsibilities between (or among?) objects and how objects communicate
+     - Deals with the responsibilities of an object
+     - Help (multiple) objects to cooperate with each other to achieve the same goal
+     - Assigns the heirarchy: setting one object as "object of record" and other objects observe it for any changes
+     - Can encapsulate requests: to make sure the requests are being made appropriately and make changes or alter the requests as needed
+
+- Observer
+    * Allows a collection of objects to "watch" one other object and be notified of changes
+    * Allows for "loosely-coupled" subsystems
+    * One object is the "focal point"
+    * A group of other objects watch for changes
