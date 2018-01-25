@@ -25,6 +25,26 @@ var auditingService = function () {
     }
 };
 
+/*
+    Creating our "ObserverList" for "Task" subject
+*/
+var ObserverList = function () {
+    this.observers = [];
+};
+/*
+    Now we've to add all the methods to the list
+     - add()
+     - get()
+*/
+ObserverList.prototype.add = function (obj) {
+    return this.observers.push(obj);
+};
+ObserverList.prototype.get = function (index) {
+    if( 0 <= index < this.observers.length){
+        return this.observers[index];
+    }
+};
+
 var task1 = new Task({
     name: 'create a demo for constructors',
     user: 'Pavel'
