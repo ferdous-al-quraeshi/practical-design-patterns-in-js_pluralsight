@@ -61,3 +61,9 @@ This repo is meant to keep track of my learning stages of the mentioned tutorial
     * Allows for "loosely-coupled" subsystems
     * One object is the "focal point"
     * A group of other objects watch for changes
+
+ - Mediator [pub-sub model]
+    * Controls communication between objects so that neither object has to be coupled to the others
+    * Allows for loosely-coupled systems
+    * One object manages all communication
+    * Many-to-many relationship
