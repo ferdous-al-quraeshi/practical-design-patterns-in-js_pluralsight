@@ -62,8 +62,19 @@ This repo is meant to keep track of my learning stages of the mentioned tutorial
     * One object is the "focal point"
     * A group of other objects watch for changes
 
- - Mediator [pub-sub model]
+- Mediator [pub-sub model]
     * Controls communication between objects so that neither object has to be coupled to the others
     * Allows for loosely-coupled systems
     * One object manages all communication
     * Many-to-many relationship
+
+- Command
+    * Encapsulates the calling of a method as an object (as its own individual 'thing')
+    * Fully decouples the execution from the implementation
+    * Allows for much less fragile implementations
+    * Support undo operations
+    * Supports auditing and logging of operations
+
+
+
+
